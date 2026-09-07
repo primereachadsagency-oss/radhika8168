@@ -1,106 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stock Education Hub – Start Learning</title>
-  <meta name="description" content="100% free stock market education. Learn chart reading, technical analysis, and risk management. No buy/sell tips. For learning purpose only.">
-  <link rel="canonical" href="https://example.com/">
-
-  <!-- Performance -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
-
-  <!-- Favicons (optional) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Stock Education Hub – Start Learning">
-  <meta property="og:description" content="Learn charts & risk management. No buy/sell tips. 100% educational.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://example.com/">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1600&auto=format&fit=crop">
-
-  <!-- Minimal CSS (inline for speed) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radhika Trader // Terminal</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
-    :root{
-      --bg1:#0c0c1d;
-      --bg2:#1a1a2b;
-      --brand: #00f0ff;
-      --brand-2:#00f0ff;
-      --text:#ffffff;
-      --muted:#b5b5c3;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', Courier, monospace;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.45)),
-        url('https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1600&auto=format&fit=crop') no-repeat center/cover fixed;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      min-height:100vh;
+
+    body {
+      background-color: #080a0f;
+      color: #e0e6ed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
-    .container{
-      max-width:520px; margin:0 auto; padding:24px 18px; text-align:center; min-height:100vh; display:flex; flex-direction:column; justify-content:center;
-      backdrop-filter: saturate(130%);
+
+    /* 1. SEAMLESS INFINITE TOP TICKER */
+    .ticker-wrap {
+      width: 100%;
+      background: #000000;
+      border-bottom: 1px solid #1a2332;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+      position: relative;
     }
-    .badge{display:inline-block; font-size:.78rem; padding:6px 10px; border:1px solid #2a2a3a; border-radius:999px; color:#d6eaff; background:rgba(0,240,255,.08); margin-bottom:14px}
-    h1{font-size:1.9rem; line-height:1.2; margin:6px 0 10px; background:linear-gradient(90deg,var(--brand-2),var(--brand)); -webkit-background-clip:text; background-clip:text; color:transparent;}
-    .sub{font-size:1rem; color:var(--muted); margin:0 auto 16px; max-width:36ch}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(0,255,153,.07); border:1px dashed rgba(0,255,153,.35); color:#d8ffe9; font-size:.9rem; margin:6px 0 18px;
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: infinite-scroll 20s linear infinite;
     }
-    ul.bullets{list-style:none; padding:0; margin:0 0 18px}
-    ul.bullets li{margin:8px 0; color:#e9eef9}
-    .cta{
-      display:inline-block; text-decoration:none; background:var(--brand); color:#041b14; padding:14px 18px; font-weight:700; border-radius:12px; box-shadow:0 0 0 0 rgba(0,255,153,.6); transform:translateZ(0);
-      transition:transform .15s ease;
-      animation:pulse 1.6s infinite;
+
+    .ticker-track:hover {
+      animation-play-state: paused;
     }
-    .cta:active{transform:scale(.98)}
-    @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(0,255,153,.55)}
-      70%{box-shadow:0 0 0 20px rgba(0,255,153,0)}
-      100%{box-shadow:0 0 0 0 rgba(0,255,153,0)}
+
+    @keyframes infinite-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
-    .fineprint{font-size:.86rem; color:var(--muted); margin:18px auto 0; max-width:44ch}
-    .disclaimer{font-size:.78rem; color:#9aa4b2; margin:18px auto 0; max-width:50ch}
-    .safe{display:flex; align-items:center; justify-content:center; gap:8px; margin-top:14px; color:#a1ffd6; font-size:.9rem}
-    .shield{width:18px; height:18px; display:inline-block; border-radius:4px; background:linear-gradient(135deg,#0df,#0f9)}
-    footer{opacity:.8; margin-top:22px; font-size:.78rem; color:#9aa4b2}
+
+    .ticker-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      gap: 6px;
+      margin-right: 35px;
+      font-size: 11px;
+    }
+    .up { color: #00e676; }
+    .down { color: #ff5252; }
+
+    /* MAIN TERMINAL CARD */
+    .terminal-wrapper {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 420px;
+      background: #0d131d;
+      border: 1px solid #1e2d42;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.8);
+      transition: border-color 0.3s ease;
+    }
+    
+    .terminal-wrapper:hover {
+      border-color: #ffb703;
+    }
+
+    /* TERMINAL HEADER */
+    .terminal-header {
+      background: #080c14;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e2d42;
+      font-size: 11px;
+      color: #88a0b8;
+    }
+    .dots span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-left: 3px;
+    }
+    .dot-yellow { background: #ffb703; }
+    .dot-orange { background: #fb8500; }
+    .dot-red { background: #ff5252; }
+
+    /* PROFILE SECTION */
+    .profile-section {
+      padding: 20px;
+      text-align: center;
+    }
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      border: 2px solid #ffb703;
+      object-fit: cover;
+      margin-bottom: 10px;
+      box-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+    .subtitle {
+      font-size: 10px;
+      color: #5c708a;
+      margin-bottom: 12px;
+    }
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      font-size: 10px;
+    }
+    .badge {
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    .badge-yellow { background: #ffb703; color: #000; }
+    
+    .badge-red { 
+      background: #ff3366; 
+      color: #fff; 
+      animation: pulse-badge 1.5s infinite;
+    }
+    @keyframes pulse-badge {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .badge-blue { background: #1a365d; color: #00d2ff; border: 1px solid #00d2ff; }
+
+    /* STATS GRID */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #1e2d42;
+      border-bottom: 1px solid #1e2d42;
+      text-align: center;
+      padding: 12px 0;
+      background: #0a0f18;
+    }
+    .stat-val { font-size: 14px; font-weight: bold; color: #ffb703; }
+    .stat-lbl { font-size: 9px; color: #5c708a; margin-top: 2px; }
+
+    /* ANIMATED CANDLESTICK CHART */
+    .chart-section { padding: 15px 20px; }
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #5c708a;
+      margin-bottom: 10px;
+    }
+    .candles {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 45px;
+    }
+    .candle {
+      width: 12px;
+      position: relative;
+      animation: candle-pulse 2s infinite ease-in-out alternate;
+    }
+    .candle::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      bottom: -6px;
+      left: 5px;
+      width: 2px;
+      background: inherit;
+    }
+    .candle.green { background: #00e676; height: 25px; }
+    .candle.red { background: #ff5252; height: 20px; }
+
+    .candle:nth-child(1) { animation-delay: 0.1s; }
+    .candle:nth-child(2) { animation-delay: 0.4s; }
+    .candle:nth-child(3) { animation-delay: 0.2s; }
+    .candle:nth-child(4) { animation-delay: 0.6s; }
+    .candle:nth-child(5) { animation-delay: 0.3s; }
+    .candle:nth-child(6) { animation-delay: 0.5s; }
+    .candle:nth-child(7) { animation-delay: 0.2s; }
+    .candle:nth-child(8) { animation-delay: 0.7s; }
+
+    @keyframes candle-pulse {
+      0% { transform: scaleY(1); }
+      100% { transform: scaleY(1.2); }
+    }
+
+    /* MENU ITEMS */
+    .menu-list {
+      padding: 0 20px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .menu-item {
+      background: #111823;
+      border: 1px solid #1e2d42;
+      padding: 12px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .menu-item:hover {
+      background: #182232;
+      border-color: #ffb703;
+      transform: translateX(4px);
+    }
+    .menu-left { display: flex; align-items: center; gap: 12px; }
+    .menu-icon { font-size: 16px; color: #ffb703; }
+    .menu-text h4 { font-size: 12px; color: #fff; }
+    .menu-text p { font-size: 9px; color: #5c708a; }
+    .arrow { font-size: 10px; color: #5c708a; transition: color 0.3s ease; }
+    .menu-item:hover .arrow { color: #ffb703; }
+
+    /* CTA BUTTON */
+    .cta-container { padding: 0 20px 15px; }
+    .cta-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid #ffb703;
+      color: #ffb703;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 183, 3, 0.1);
+    }
+    .cta-btn:hover {
+      background: #ffb703;
+      color: #000;
+      box-shadow: 0 0 20px rgba(255, 183, 3, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER LINKS FOR POPUPS */
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 15px 5px;
+      border-top: 1px solid #1e2d42;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      color: #ffb703;
+      font-size: 9px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-link:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .terminal-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      font-size: 8px;
+      color: #3b4d61;
+    }
+
+    /* MODAL / POPUP STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: 90%;
+      max-width: 400px;
+      background: #0d131d;
+      border: 1px solid #ffb703;
+      border-radius: 8px;
+      box-shadow: 0 0 25px rgba(255, 183, 3, 0.2);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      background: #080c14;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e2d42;
+      color: #ffb703;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .modal-close {
+      color: #88a0b8;
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: #ff5252;
+    }
+
+    .modal-body {
+      padding: 18px;
+      font-size: 11px;
+      color: #c0cdf0;
+      line-height: 1.6;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    .modal-body h3 {
+      color: #ffffff;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .modal-body p {
+      margin-bottom: 10px;
+    }
+    .modal-body ul {
+      margin-left: 15px;
+      margin-bottom: 10px;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      background: #080c14;
+      border: 1px solid #1e2d42;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-size: 10px;
+    }
+    .contact-form button {
+      background: #ffb703;
+      color: #000;
+      border: none;
+      padding: 8px 15px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 10px;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
-  <main class="container">
-    <span class="badge">100% Educational • Policy Safe</span>
-    <h1>Stock Education Hub – Start Learning</h1>
-    <p class="sub">No tips, just education for beginners</p>
 
-    <div class="pill">🚫 No Buy/Sell Tips • ✅ For Learning Purpose Only</div>
+  <!-- Seamless Continuous Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <!-- Group 1 -->
+      <div class="ticker-group">
+        <div class="ticker-item"><span>HDFC</span> <span class="up">1,680.40 +2.1%</span></div>
+        <div class="ticker-item"><span>ITC</span> <span class="up">468.20 +0.4%</span></div>
+        <div class="ticker-item"><span>INFY</span> <span class="down">1,892.35 -0.7%</span></div>
+        <div class="ticker-item"><span>NIFTY</span> <span class="up">22,450.35 +1.2%</span></div>
+        <div class="ticker-item"><span>SENSEX</span> <span class="up">73,852.10 +0.9%</span></div>
+        <div class="ticker-item"><span>BANKNIFTY</span> <span class="up">48,620.50 +1.0%</span></div>
+        <div class="ticker-item"><span>RELIANCE</span> <span class="down">2,940.15 -0.3%</span></div>
+        <div class="ticker-item"><span>TCS</span> <span class="up">4,102.80 +0.6%</span></div>
+      </div>
+      <!-- Duplicate Group 2 for seamless infinite loop -->
+      <div class="ticker-group">
+        <div class="ticker-item"><span>HDFC</span> <span class="up">1,680.40 +2.1%</span></div>
+        <div class="ticker-item"><span>ITC</span> <span class="up">468.20 +0.4%</span></div>
+        <div class="ticker-item"><span>INFY</span> <span class="down">1,892.35 -0.7%</span></div>
+        <div class="ticker-item"><span>NIFTY</span> <span class="up">22,450.35 +1.2%</span></div>
+        <div class="ticker-item"><span>SENSEX</span> <span class="up">73,852.10 +0.9%</span></div>
+        <div class="ticker-item"><span>BANKNIFTY</span> <span class="up">48,620.50 +1.0%</span></div>
+        <div class="ticker-item"><span>RELIANCE</span> <span class="down">2,940.15 -0.3%</span></div>
+        <div class="ticker-item"><span>TCS</span> <span class="up">4,102.80 +0.6%</span></div>
+      </div>
+    </div>
+  </div>
 
-    <ul class="bullets" aria-label="What you'll learn">
-      <li>• Chart basics & risk rules (no return promises)</li>
-      <li>• How to read trends without speculation</li>
-      <li>• Market discipline & common mistakes</li>
-    </ul>
+  <!-- Terminal Card -->
+  <div class="terminal-wrapper">
+    <div class="terminal-header">
+      <span>RADHIKA_TRADER // TERMINAL</span>
+      <div class="dots">
+        <span class="dot-yellow"></span>
+        <span class="dot-orange"></span>
+        <span class="dot-red"></span>
+      </div>
+    </div>
 
-    <!-- CTA goes to a page-specific bridge -->
-    <a class="cta" href="bridge-lp98.html" rel="nofollow">Start Learning</a>
+    <div class="profile-section">
+      <img src="https://via.placeholder.com/70" alt="Profile" class="avatar">
+      <div class="title">RADHIKA TRADER</div>
+      <div class="subtitle">MARKET INTELLIGENCE SYSTEM v2.4</div>
+      <div class="badges">
+        <span class="badge badge-yellow"><i class="fa-solid fa-star"></i> PREMIUM</span>
+        <span class="badge badge-red">• LIVE</span>
+        <span class="badge badge-blue">100K+ MEMBERS</span>
+      </div>
+    </div>
 
-    <div class="safe"><span class="shield" aria-hidden="true"></span> Ad Policy Friendly Content</div>
+    <div class="stats-grid">
+      <div>
+        <div class="stat-val">98.2%</div>
+        <div class="stat-lbl">ACCURACY</div>
+      </div>
+      <div>
+        <div class="stat-val">100K+</div>
+        <div class="stat-lbl">MEMBERS</div>
+      </div>
+      <div>
+        <div class="stat-val">24/7</div>
+        <div class="stat-lbl">LIVE FEED</div>
+      </div>
+    </div>
 
-    <p class="fineprint">We focus on concepts & frameworks suitable for beginners.</p>
-    <p class="disclaimer"><em>This website is for educational purposes only. We do not provide investment, trading, or financial advice.</em></p>
+    <div class="chart-section">
+      <div class="chart-header">
+        <span>// SIGNAL HISTORY</span>
+        <span class="up">▲ +12.4% TODAY</span>
+      </div>
+      <div class="candles">
+        <div class="candle red"></div>
+        <div class="candle green"></div>
+        <div class="candle red"></div>
+        <div class="candle green"></div>
+        <div class="candle red"></div>
+        <div class="candle green"></div>
+        <div class="candle green"></div>
+        <div class="candle red"></div>
+      </div>
+    </div>
 
-    <footer>© <span id="y"></span> Market Basics Learning Hub</footer>
-  </main>
+    <div class="menu-list">
+      <div class="menu-item">
+        <div class="menu-left">
+          <i class="fa-solid fa-chart-line menu-icon"></i>
+          <div class="menu-text">
+            <h4>Expert Analysis</h4>
+            <p>PROFESSIONAL MARKET INSIGHTS</p>
+          </div>
+        </div>
+        <span class="arrow">▶</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-left">
+          <i class="fa-solid fa-bolt menu-icon"></i>
+          <div class="menu-text">
+            <h4>Real-time Signals</h4>
+            <p>LIVE MARKET UPDATES & TRENDS</p>
+          </div>
+        </div>
+        <span class="arrow">▶</span>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-left">
+          <i class="fa-solid fa-bullseye menu-icon"></i>
+          <div class="menu-text">
+            <h4>Education Circle</h4>
+            <p>CONNECT WITH SAVVY TRADERS</p>
+          </div>
+        </div>
+        <span class="arrow">▶</span>
+      </div>
+    </div>
+
+    <!-- CTA BUTTON WITH YOUR TELEGRAM LINK -->
+    <div class="cta-container">
+      <a href="https://t.me/+UhbAHZ_WQXE3MDZl" target="_blank" class="cta-btn">
+        $ <i class="fa-brands fa-telegram"></i> JOIN STRATEGY CHANNEL
+      </a>
+    </div>
+
+    <!-- Footer Popups Links -->
+    <div class="footer-links">
+      <a class="footer-link" onclick="openModal('about')">[ABOUT US]</a>
+      <a class="footer-link" onclick="openModal('terms')">[TERMS]</a>
+      <a class="footer-link" onclick="openModal('disclaimer')">[DISCLAIMER]</a>
+      <a class="footer-link" onclick="openModal('contact')">[CONTACT US]</a>
+    </div>
+
+    <div class="terminal-footer">
+      <span>FOR EDUCATIONAL PURPOSES ONLY</span>
+      <span>ADV BY MARKETING JASOOS</span>
+    </div>
+  </div>
+
+  <!-- MODAL / POPUP OVERLAY -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOuterClick(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span id="modalTitle">MODAL TITLE</span>
+        <i class="fa-solid fa-xmark modal-close" onclick="closeModal()"></i>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic Content Loaded via JS -->
+      </div>
+    </div>
+  </div>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    const modalData = {
+      about: {
+        title: "// ABOUT US",
+        content: `
+          <h3>Welcome to Radhika Trader</h3>
+          <p>We provide advanced market intelligence, analytics, and stock market learning resources to empower traders.</p>
+          <p>Our platform is designed to give you real-time trends, educational signals, and community guidance to navigate the stock market efficiently.</p>
+        `
+      },
+      terms: {
+        title: "// TERMS & CONDITIONS",
+        content: `
+          <h3>Terms of Service</h3>
+          <p>By using this platform or joining our channel, you agree to the following terms:</p>
+          <ul>
+            <li>All updates and updates are provided for educational purposes only.</li>
+            <li>We do not offer guaranteed returns or individual financial advice.</li>
+            <li>You are solely responsible for your own trading decisions and risk management.</li>
+          </ul>
+        `
+      },
+      disclaimer: {
+        title: "// DISCLAIMER",
+        content: `
+          <h3>Financial Disclaimer</h3>
+          <p>Trading in stocks, options, and futures involves substantial risk of loss and is not suitable for every investor.</p>
+          <p>We are not SEBI registered advisors unless explicitly stated. Information shared here is for learning and market analysis purposes only.</p>
+        `
+      },
+      contact: {
+        title: "// CONTACT US",
+        content: `
+          <h3>Get In Touch</h3>
+          <p>Have any queries? Send us a direct message below or reach out via Telegram.</p>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!'); closeModal();">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email / Telegram Username" required />
+            <textarea rows="3" placeholder="Your Message..." required></textarea>
+            <button type="submit">SEND MESSAGE</button>
+          </form>
+        `
+      }
+    };
+
+    function openModal(key) {
+      const overlay = document.getElementById('modalOverlay');
+      const title = document.getElementById('modalTitle');
+      const body = document.getElementById('modalBody');
+
+      if (modalData[key]) {
+        title.innerText = modalData[key].title;
+        body.innerHTML = modalData[key].content;
+        overlay.classList.add('active');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    function closeModalOnOuterClick(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModal();
+      }
+    }
   </script>
 </body>
 </html>
