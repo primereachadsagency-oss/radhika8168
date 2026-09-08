@@ -7,22 +7,22 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   
   <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1427666085851918');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1427666085851918');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   
   <style>
     * {
@@ -123,7 +123,7 @@ src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
 
     /* PROFILE SECTION */
     .profile-section {
-      padding: 20px;
+      padding: 20px 20px 15px 20px;
       text-align: center;
     }
     .avatar {
@@ -151,6 +151,7 @@ src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
       justify-content: center;
       gap: 8px;
       font-size: 10px;
+      margin-bottom: 15px;
     }
     .badge {
       padding: 3px 8px;
@@ -171,6 +172,36 @@ src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
     }
 
     .badge-blue { background: #1a365d; color: #00d2ff; border: 1px solid #00d2ff; }
+
+    /* HIGH VISIBILITY CTA BUTTON */
+    .cta-container { 
+      padding: 0 20px 15px; 
+    }
+    .cta-btn {
+      width: 100%;
+      background: #ffb703;
+      border: 1px solid #ffb703;
+      color: #000000;
+      padding: 14px;
+      border-radius: 6px;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+    }
+    .cta-btn:hover {
+      background: #ffa000;
+      color: #000;
+      box-shadow: 0 0 25px rgba(255, 183, 3, 0.8);
+      transform: translateY(-2px);
+    }
 
     /* STATS GRID */
     .stats-grid {
@@ -260,33 +291,6 @@ src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
     .menu-text p { font-size: 9px; color: #5c708a; }
     .arrow { font-size: 10px; color: #5c708a; transition: color 0.3s ease; }
     .menu-item:hover .arrow { color: #ffb703; }
-
-    /* CTA BUTTON */
-    .cta-container { padding: 0 20px 15px; }
-    .cta-btn {
-      width: 100%;
-      background: transparent;
-      border: 1px solid #ffb703;
-      color: #ffb703;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(255, 183, 3, 0.1);
-    }
-    .cta-btn:hover {
-      background: #ffb703;
-      color: #000;
-      box-shadow: 0 0 20px rgba(255, 183, 3, 0.5);
-      transform: translateY(-2px);
-    }
 
     /* FOOTER LINKS FOR POPUPS */
     .footer-links {
@@ -474,6 +478,13 @@ src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
         <span class="badge badge-red">• LIVE</span>
         <span class="badge badge-blue">100K+ MEMBERS</span>
       </div>
+      
+      <!-- CTA BUTTON MOVED RIGHT BELOW BADGES & HIGHLY VISIBLE -->
+      <div class="cta-container" style="padding: 0;">
+        <a href="https://t.me/+UhbAHZ_WQXE3MDZl" target="_blank" class="cta-btn">
+          <i class="fa-brands fa-telegram"></i> JOIN STRATEGY CHANNEL
+        </a>
+      </div>
     </div>
 
     <div class="stats-grid">
@@ -541,13 +552,6 @@ src="https://www.facebook.com/tr?id=1427666085851918&ev=PageView&noscript=1"
         </div>
         <span class="arrow">▶</span>
       </div>
-    </div>
-
-    <!-- CTA BUTTON WITH YOUR TELEGRAM LINK -->
-    <div class="cta-container">
-      <a href="https://t.me/+UhbAHZ_WQXE3MDZl" target="_blank" class="cta-btn">
-        $ <i class="fa-brands fa-telegram"></i> JOIN STRATEGY CHANNEL
-      </a>
     </div>
 
     <!-- Footer Popups Links -->
